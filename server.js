@@ -2,7 +2,7 @@
 
 const express = require('express');
 const Cloudant = require("cloudant");
-const port = process.env.PORT ;
+const port = process.env.PORT | 8081;
 const app = express();
 
 var credentials =

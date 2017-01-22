@@ -1,0 +1,17 @@
+{
+  "name": "appdebug",
+  "version": "0.1.0",
+  "description": "Romain réussi sa certification",
+  "author": "Womain",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cloudant": "^1.7.0",
+    "express": "^4.13.3",
+    "nopt": "^4.0.1",
+    "process-nextick-args": "^1.0.7",
+    "npmlog": "^4.0.2"
+  }
+}

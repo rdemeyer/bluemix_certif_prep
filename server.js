@@ -2,17 +2,21 @@
 
 const express = require('express');
 const Cloudant = require("cloudant");
-const port = process.env.PORT | 8081;
+const port = process.env.PORT;
 const app = express();
 
-var credentials =
-{
-     "host": "842b1946-4b3e-43b8-924e-d7b601a878c8-bluemix.cloudant.com",
-     "password": "184400dba6f71230aeb873bf43382428f2e5f821a9381a244b81017dd4cb6955",
-     "port": 443,
-     "url": "https://842b1946-4b3e-43b8-924e-d7b601a878c8-bluemix:184400dba6f71230aeb873bf43382428f2e5f821a9381a244b81017dd4cb6955@842b1946-4b3e-43b8-924e-d7b601a878c8-bluemix.cloudant.com",
-     "username": "842b1946-4b3e-43b8-924e-d7b601a878c8-bluemix"
-};
+if (process.env.VCAP_SERVICES) {
+  var vcap = JSON.parse(process.env.VCAP_SERVICES);
+  var credentials = vcap.cloudantNoSQLDB[0].credentials ;
+} else {
+  var credentials = {
+     "host": process.env.cloudanthost,
+     "password": process.env.cloudantpassword,
+     "port": process.env.cloudantport,
+     "url": process.env.cloudanturl,
+     "username": process.env.cloudantusername
+  }
+}
 
 
 var cloudant = Cloudant(credentials, function(er, cloudant, reply) {
